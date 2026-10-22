@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# سامانه جامع هوش تجاری و اتوماسیون ساختمان (APEX BI & BAS Platform)
 
-## Getting Started
+یک وب‌اپلیکیشن جامع، مدرن و پیشرفته مبتنی بر **Next.js 16 (App Router)**، **React 19** و **Tailwind CSS v4** برای تلفیق سیستم‌های **اتوماسیون ساختمان (BAS)** و **هوش تجاری (BI)**.
 
-First, run the development server:
+---
+
+## 🌟 قابلیت‌ها و بخش‌های اصلی سامانه
+
+### ۱. مرکز فرماندهی و تله‌متری زنده (Command Center)
+- **پایش بلادرنگ (Live Telemetry):** نمایش لحظه‌ای توان مصرفی ساختمان (kW)، تولید برق خورشیدی، دمای میانگین، کیفیت هوا و هشدارها با به‌روزرسانی زنده (امکان توقف، اجرا و تنظیم سرعت ۱x / ۲x / ۵x).
+- **نمودار دینامیک بار ۲۴ ساعته (Load Profile):** نمایش همپوشانی مصرف سرمایش، تجهیزات سرور و تولید سلول‌های خورشیدی با منحنی‌های نرم Bezier و تولتیپ‌های تعاملی.
+- **گیج‌های رادیال بازدهی:** پایش راندمان چیلر (COP)، شاخص تاب‌آوری تجهیزات و کاهش کربن دی‌اکسید (ESG).
+- **فید بلادرنگ هشدارها (Alarm Feed):** تفکیک بر اساس سطح اهمیت (بحرانی، هشدار، اطلاع‌رسانی) همراه با امکان تأیید (Acknowledge) و رفع خطا (Resolve).
+
+### ۲. اتوماسیون ساختمان و نقشه تعاملی (BAS & Floorplan)
+- **نقشه ۲ بعدی تعاملی طبقات:** نمایش زون‌های مختلف ساختمان (فضای مهندسی، سالن جلسات، دیتاسنتر، سالن اجتماعات، کافه‌تریا) با حالت‌های نمایش حرارتی (Thermal Heatmap)، حضور افراد (Occupancy) و چگالی توان (Power Density).
+- **پنل کنترل زون‌ها (Zone Control Drawer):**
+  - تنظیم دمای مطلوب (Setpoint) با اسلایدر تعاملی.
+  - تغییر حالت عملکرد تهویه (Auto / Cooling / Heating / Eco / Off).
+  - کنترل سرعت فن دهش (Low / Medium / High / Auto).
+  - سیستم روشنایی هوشمند با اسلایدر تنظیم شدت نور (Lux / Dimming).
+
+### ۳. موتور اتوماسیون و قوانین هوشمند (Rule Engine)
+- تعریف و اعمال قوانین شرطی IF-THEN بر مبنای متغیرهای دمایی، توان پیک شبکه، حضور افراد و کیفیت هوا.
+- فرم ایجاد قوانین جدید (`CreateRuleModal`) همراه با آستانه‌های قابل تنظیم و اکشن‌های خودکار.
+- ثبت دفعات اجرای خودکار هر قانون و امکان تست دستی سناریوها.
+
+### ۴. استودیو هوش تجاری و تحلیل انرژی (BI Analytics)
+- تحلیل چندبُعدی هزینه‌های انرژی بر حسب دوره‌های زمانی (امروز، ۷ روزه، ۳۰ روزه، سالانه).
+- مقایسه مصرف زون‌ها با خط مبنای استاندارد مصرف (Baseline Comparison).
+- تفکیک هزینه‌های تعرفه سه‌زمانه برق (ساعات اوج بار، میان‌باری و کم‌باری شبانه).
+- استخراج فوری داده‌ها با فرمت CSV و JSON.
+
+### ۵. پایش سلامت تجهیزات و نگهداری پیشگیرانه (PdM)
+- پایش وضعیت چیلرهای گریز از مرکز مغناطیسی، هواسازهای مرکزی (AHU)، اینورترهای خورشیدی، دیزل ژنراتور اضطراری و سیستم‌های UPS.
+- اندازه‌گیری لرزش یاتاقان‌ها (mm/s)، دمای کارکرد، شاخص سلامت (Health Score 0-100%) و سررسید سرویس‌های دوره‌ای.
+
+### ۶. پیشنهادات هوش مصنوعی و شبیه‌ساز (AI Insights & Sandbox)
+- توصیه‌های الگوریتمی کاهش مصرف و پیش‌بینی خرابی قطعات با برآورد ریالی و دلاری صرفه‌جویی ماهیانه.
+- **شبیه‌ساز هوشمند دیجیتال توئین (Sandbox):** شبیه‌سازی اثر تغییرات ست‌پوینت و افزایش ظرفیت خورشیدی بر کاهش رقم صورت‌حساب برق و ردپای کربن به صورت بلادرنگ.
+
+### ۷. گزارش‌ساز و نسخه چاپی (Reports & Export)
+- خلاصه وضعیت اجرایی جهت ارائه به مدیریت ارشد و ممیزی انرژی (ISO 50001).
+- نسخه بهینه‌سازی‌شده برای چاپ و ذخیره به عنوان PDF (`window.print()`).
+- جدول داده‌های ۲۴ ساعته تله‌متری با کلیه مشخصات فنی.
+
+---
+
+## 🎨 طراحی و تجربه کاربری (UI/UX)
+- **پشتیبانی کامل دوزبانه (Bilingual):** فارسی (RTL پیش‌فرض) با فونت بهینه‌شده **وزیرمتن (Vazirmatn)** و انگلیسی (LTR).
+- **تم‌های ظاهری متنوع:** تم سایبرپانک تیره (Cyber Theme) با جلوه‌های نئونی، تم تیره استاندارد (Dark) و تم روشن (Light).
+- **واحدهای سنجش:** سوئیچ بین سانتی‌گراد (°C) و فارنهایت (°F)، و نمایش ارقام به تومان یا دلار آمریکا.
+- **پایداری داده‌ها:** ذخیره‌سازی وضعیت و شخصی‌سازی‌ها در `localStorage` با امکان بازنشانی به تنظیمات کارخانه (Factory Reset).
+
+---
+
+## 🚀 نحوه راه‌اندازی و اجرا
 
 ```bash
+# اجرای نسخه توسعه
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# ساخت نسخه پروداکشن
+npm run build
+
+# اجرای نسخه نهایی
+npm start
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+مرورگر را باز کرده و به آدرس `http://localhost:3000` مراجعه فرمایید.
